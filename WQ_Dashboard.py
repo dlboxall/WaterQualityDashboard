@@ -5,7 +5,7 @@
 
 # In[1]:
 
-
+pip install streamlit-folium
 import streamlit as st
 import pandas as pd
 #import folium
