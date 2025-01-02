@@ -47,35 +47,35 @@ def main():
 
     # Create a map centered on a general area
     map_center = [43.580, -96.720]  # Approximate center of all points
-    water_quality_map = st_folium.Map(location=map_center, zoom_start=12)
+    water_quality_map = folium.Map(location=map_center, zoom_start=12)
 
     # Add markers for each sampling location
     for site in sampling_locations:
-        st_folium.Marker(
+        folium.Marker(
             location=[site["lat"], site["lon"]],
             popup=site["location"],  # Display only the location name
-            icon=st_folium.Icon(color="blue", icon="info-sign"),  # Blue marker
+            icon=folium.Icon(color="blue", icon="info-sign"),  # Blue marker
         ).add_to(water_quality_map)
 
     # Add a red marker for Smithfield Foods
-    st_folium.Marker(
+    folium.Marker(
         location=[smithfield_location["lat"], smithfield_location["lon"]],
         popup=smithfield_location["location"],
-        icon=st_folium.Icon(color="red", icon="info-sign"),  # Red marker
+        icon=folium.Icon(color="red", icon="info-sign"),  # Red marker
     ).add_to(water_quality_map)
 
     # Add a red marker for SF Waste Water Treatment
-    st_folium.Marker(
+    folium.Marker(
         location=[sfwwt_location["lat"], sfwwt_location["lon"]],
         popup=sfwwt_location["location"],
-        icon=st_folium.Icon(color="red", icon="info-sign"),  # Red marker
+        icon=folium.Icon(color="red", icon="info-sign"),  # Red marker
     ).add_to(water_quality_map)
 
     # Add a red marker for Williams Disposal Pit (Superfund)
-    st_folium.Marker(
+    folium.Marker(
         location=[williams_location["lat"], williams_location["lon"]],
         popup=williams_location["location"],
-        icon=st_folium.Icon(color="red", icon="info-sign"),  # Red marker
+        icon=folium.Icon(color="red", icon="info-sign"),  # Red marker
     ).add_to(water_quality_map)
 
     # Display the map in Streamlit
