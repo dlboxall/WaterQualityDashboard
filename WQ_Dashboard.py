@@ -29,13 +29,6 @@ def main():
     # 2. FOLIUM MAP (using your custom markers for specific sites)
     # ---------------------------------------------------------------------------------
 
-     m = folium.Map(location=[39.949610, -75.150282], zoom_start=16)
-folium.Marker([39.949610, -75.150282], popup="Liberty Bell", tooltip="Liberty Bell").add_to(m)
-st_data = st_folium(m, width=725)
-
-
-
-    
     # Coordinates for a sampling location
     sampling_locations = [
         {"location": "Big Sioux River @ I-90",       "lat": 43.610284, "lon": -96.744755},
