@@ -28,6 +28,13 @@ def main():
     # --------------------------------------------------------------.c-------------------
     # 2. FOLIUM MAP (using your custom markers for specific sites)
     # ---------------------------------------------------------------------------------
+
+     m = folium.Map(location=[39.949610, -75.150282], zoom_start=16)
+folium.Marker([39.949610, -75.150282], popup="Liberty Bell", tooltip="Liberty Bell").add_to(m)
+st_data = st_folium(m, width=725)
+
+
+
     
     # Coordinates for a sampling location
     sampling_locations = [
@@ -47,35 +54,35 @@ def main():
 
     # Create a map centered on a general area
     map_center = [43.580, -96.720]  # Approximate center of all points
-    water_quality_map = folium.Map(location=map_center, zoom_start=12)
+    water_quality_map = st_folium.Map(location=map_center, zoom_start=12)
 
     # Add markers for each sampling location
     for site in sampling_locations:
-        folium.Marker(
+        st_folium.Marker(
             location=[site["lat"], site["lon"]],
             popup=site["location"],  # Display only the location name
-            icon=folium.Icon(color="blue", icon="info-sign"),  # Blue marker
+            icon=st_folium.Icon(color="blue", icon="info-sign"),  # Blue marker
         ).add_to(water_quality_map)
 
     # Add a red marker for Smithfield Foods
-    folium.Marker(
+    st_folium.Marker(
         location=[smithfield_location["lat"], smithfield_location["lon"]],
         popup=smithfield_location["location"],
-        icon=folium.Icon(color="red", icon="info-sign"),  # Red marker
+        icon=st_folium.Icon(color="red", icon="info-sign"),  # Red marker
     ).add_to(water_quality_map)
 
     # Add a red marker for SF Waste Water Treatment
-    folium.Marker(
+    st_folium.Marker(
         location=[sfwwt_location["lat"], sfwwt_location["lon"]],
         popup=sfwwt_location["location"],
-        icon=folium.Icon(color="red", icon="info-sign"),  # Red marker
+        icon=st_folium.Icon(color="red", icon="info-sign"),  # Red marker
     ).add_to(water_quality_map)
 
     # Add a red marker for Williams Disposal Pit (Superfund)
-    folium.Marker(
+    st_folium.Marker(
         location=[williams_location["lat"], williams_location["lon"]],
         popup=williams_location["location"],
-        icon=folium.Icon(color="red", icon="info-sign"),  # Red marker
+        icon=st_folium.Icon(color="red", icon="info-sign"),  # Red marker
     ).add_to(water_quality_map)
 
     # Display the map in Streamlit
