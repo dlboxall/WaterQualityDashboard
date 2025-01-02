@@ -6,10 +6,10 @@
 # In[1]:
 #pip install streamlit-folium;
 
-import folium
 import streamlit as st
-import pandas as pd
+import folium
 from streamlit_folium import st_folium
+import pandas as pd
 import altair as alt
 
 # 1. LOAD DATA
