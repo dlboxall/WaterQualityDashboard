@@ -113,6 +113,53 @@ def main():
         "Select a feature for the y-axis:",
         numeric_cols
     )
+    
+
+
+# Mapping of feature names to their labels with units
+feature_units = {
+    "Nitrate": "Nitrate (ppm)",
+    "DissolvedOxygen": "Dissolved Oxygen (ppm)",
+    "Ammonia": "Ammonia (ppm)",
+    "EColi": "E. coli (CFU)",
+    "TotalSuspendedSolids": "Total Suspended Solids (ppm)",
+    "Temperature": "Temperature (°C)"
+}
+
+# Identify numeric columns (excluding columns you don't want to plot)
+numeric_cols = ['pH', 'Ammonia', 'EColi', 'Nitrate', 'DissolvedOxygen', 'TotalSuspendedSolids', 'Temperature']
+
+# Let user pick which feature to plot on the y-axis
+selected_feature = st.selectbox(
+    "Select a feature for the y-axis:",
+    numeric_cols
+)
+
+# Get the corresponding title with units for the selected feature
+y_axis_title = feature_units.get(selected_feature, selected_feature)
+
+# Build Altair scatter plot
+scatter_chart = (
+    alt.Chart(new_df)
+    .mark_circle(size=30)
+    .encode(
+        x=alt.X("SampleDate:T", title="Sample Date"),
+        y=alt.Y(selected_feature, title=y_axis_title, scale=alt.Scale(zero=False)),
+        tooltip=["SampleDate", selected_feature]
+    )
+    .properties(
+        width="container",
+        height=400,
+        title=f"{y_axis_title} over time"
+    )
+    .interactive()  # enables zooming/panning in the chart
+)
+
+st.write("## Time-Series Scatter Plot")
+st.altair_chart(scatter_chart, use_container_width=True)
+
+    
+    '''
     # Get the corresponding title with units for the selected feature
     y_axis_title = feature_units.get(selected_feature, selected_feature)
     
@@ -136,7 +183,7 @@ def main():
 
     st.write("## Time-Series Scatter Plot")
     st.altair_chart(scatter_chart, use_container_width=True)
-
+'''
     # ---------------------------------------------------------------------------------
     # 4. HISTOGRAM OF pH BY LOCATION (user selects Location)
     # ---------------------------------------------------------------------------------
