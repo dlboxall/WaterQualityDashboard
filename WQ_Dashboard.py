@@ -166,15 +166,15 @@ st.altair_chart(scatter_chart, use_container_width=True)
 st.title("Water Quality Dashboard with pH Stats Annotation")
 
     # Let user select location
-    locations = new_df["Location"].unique()
-    selected_location = st.selectbox("Select a location for the pH histogram", locations)
+locations = new_df["Location"].unique()
+selected_location = st.selectbox("Select a location for the pH histogram", locations)
 
     # Filter for selected location
-    filtered_df = new_df[new_df["Location"] == selected_location]
+filtered_df = new_df[new_df["Location"] == selected_location]
 
-    if filtered_df.empty:
-        st.warning(f"No data available for {selected_location}")
-        return
+if filtered_df.empty:
+    st.warning(f"No data available for {selected_location}")
+    return
 
     # -------------------------------------------------------------------
     # 2) Calculate mean and std dev of pH
