@@ -158,38 +158,12 @@ scatter_chart = (
 st.write("## Time-Series Scatter Plot")
 st.altair_chart(scatter_chart, use_container_width=True)
 
-    
-'''
-    # Get the corresponding title with units for the selected feature
-    y_axis_title = feature_units.get(selected_feature, selected_feature)
-    
-    # Build Altair scatter plot
-    scatter_chart = (
-        alt.Chart(new_df)
-        .mark_circle(size=20)
-        .mark_circle(size=30)
-        .encode(
-            x=alt.X("SampleDate:T", title="Sample Date"),
-            y=alt.Y(selected_feature, title=selected_feature, scale=alt.Scale(zero=False)),
-            tooltip=["SampleDate", selected_feature]
-        )
-        .properties(
-            width="container",
-            height=400,
-            title=f"{selected_feature} over time"
-        )
-        .interactive()  # enables zooming/panning in the chart
-    )
-
-    st.write("## Time-Series Scatter Plot")
-    st.altair_chart(scatter_chart, use_container_width=True)
-'''
     # ---------------------------------------------------------------------------------
     # 4. HISTOGRAM OF pH BY LOCATION (user selects Location)
     # ---------------------------------------------------------------------------------
 
 #def main():
-    st.title("Water Quality Dashboard with pH Stats Annotation")
+st.title("Water Quality Dashboard with pH Stats Annotation")
 
     # Let user select location
     locations = new_df["Location"].unique()
