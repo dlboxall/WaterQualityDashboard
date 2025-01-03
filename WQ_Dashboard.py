@@ -98,7 +98,7 @@ def main():
     # Build Altair scatter plot
     scatter_chart = (
         alt.Chart(new_df)
-        .mark_circle(size=60)
+        .mark_circle(size=50)
         .encode(
             x=alt.X("SampleDate:T", title="Sample Date"),
             y=alt.Y(selected_feature, title=selected_feature, scale=alt.Scale(zero=False)),
