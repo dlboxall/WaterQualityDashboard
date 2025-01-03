@@ -159,7 +159,7 @@ st.write("## Time-Series Scatter Plot")
 st.altair_chart(scatter_chart, use_container_width=True)
 
     
-    '''
+'''
     # Get the corresponding title with units for the selected feature
     y_axis_title = feature_units.get(selected_feature, selected_feature)
     
