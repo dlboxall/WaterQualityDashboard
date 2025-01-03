@@ -81,30 +81,30 @@ for site in sampling_locations:
     st.write("## Water Quality Map")
     st_folium(water_quality_map, width=700, height=500)
 
-    # ---------------------------------------------------------------------------------
-    # 3. AUTO-SCALING SCATTER PLOT (SampleDate on x-axis; user picks y-axis)
-    # ---------------------------------------------------------------------------------
-    # Mapping of feature names to their labels with units
-    feature_units = {
-        "Nitrate": "Nitrate (ppm)",
-        "DissolvedOxygen": "Dissolved Oxygen (ppm)",
-        "Ammonia": "Ammonia (ppm)",
-        "EColi": "E. coli (CFU)",
-        "TotalSuspendedSolids": "Total Suspended Solids (ppm)",
-        "Temperature": "Temperature (°C)"
-    }
+# ---------------------------------------------------------------------------------
+# 3. AUTO-SCALING SCATTER PLOT (SampleDate on x-axis; user picks y-axis)
+# ---------------------------------------------------------------------------------
+# Mapping of feature names to their labels with units
+feature_units = {
+    "Nitrate": "Nitrate (ppm)",
+    "DissolvedOxygen": "Dissolved Oxygen (ppm)",
+    "Ammonia": "Ammonia (ppm)",
+    "EColi": "E. coli (CFU)",
+    "TotalSuspendedSolids": "Total Suspended Solids (ppm)",
+    "Temperature": "Temperature (°C)"
+}
 
-    # Identify numeric columns (excluding columns you don't want to plot)
-    numeric_cols = ['pH', 'Ammonia','EColi', 'Nitrate','DissolvedOxygen','TotalSuspendedSolids', 'Temperature']
+# Identify numeric columns (excluding columns you don't want to plot)
+numeric_cols = ['pH', 'Ammonia','EColi', 'Nitrate','DissolvedOxygen','TotalSuspendedSolids', 'Temperature']
 
-    # Let user pick which feature to plot on the y-axis
-    selected_feature = st.selectbox(
-        "Select a feature for the y-axis:",
-        numeric_cols
-    )
+# Let user pick which feature to plot on the y-axis
+selected_feature = st.selectbox(
+    "Select a feature for the y-axis:",
+    numeric_cols
+)
     
-    # Get the corresponding title with units for the selected feature
-    y_axis_title = feature_units.get(selected_feature, selected_feature)
+# Get the corresponding title with units for the selected feature
+y_axis_title = feature_units.get(selected_feature, selected_feature)
 
 # Build Altair scatter plot
 scatter_chart = (
@@ -133,24 +133,24 @@ st.altair_chart(scatter_chart, use_container_width=True)
 #def main():
 st.title("Water Quality Dashboard with pH Stats Annotation")
 
-    # Let user select location
+# Let user select location
 locations = new_df["Location"].unique()
 selected_location = st.selectbox("Select a location for the pH histogram", locations)
 
-    # Filter for selected location
+# Filter for selected location
 filtered_df = new_df[new_df["Location"] == selected_location]
 
 
 
-    # -------------------------------------------------------------------
-    # 2) Calculate mean and std dev of pH
-    # -------------------------------------------------------------------
+# -------------------------------------------------------------------
+# 2) Calculate mean and std dev of pH
+# -------------------------------------------------------------------
 mean_pH = filtered_df["pH"].mean()
 std_pH = filtered_df["pH"].std()
 
-    # -------------------------------------------------------------------
-    # 3) Base histogram
-    # -------------------------------------------------------------------
+# -------------------------------------------------------------------
+# 3) Base histogram
+# -------------------------------------------------------------------
 hist_chart = (
     alt.Chart(filtered_df)
     .mark_bar()
@@ -188,8 +188,3 @@ st.altair_chart(final_hist_chart, use_container_width=True)
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
