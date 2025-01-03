@@ -20,6 +20,7 @@ def load_data():
 
 def main():
     st.title("Big Sioux River: Water Quality Dashboard")
+    return
 
 # -- Load the data --
 new_df = load_data()
