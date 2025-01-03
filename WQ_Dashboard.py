@@ -113,7 +113,9 @@ def main():
         "Select a feature for the y-axis:",
         numeric_cols
     )
-
+    # Get the corresponding title with units for the selected feature
+    y_axis_title = feature_units.get(selected_feature, selected_feature)
+    
     # Build Altair scatter plot
     scatter_chart = (
         alt.Chart(new_df)
