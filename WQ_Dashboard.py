@@ -86,6 +86,16 @@ def main():
     # 3. AUTO-SCALING SCATTER PLOT (SampleDate on x-axis; user picks y-axis)
     # ---------------------------------------------------------------------------------
 
+    # Mapping of feature names to their labels with units
+    feature_units = {
+        "Nitrate": "Nitrate (ppm)",
+        "DissolvedOxygen": "Dissolved Oxygen (ppm)",
+        "Ammonia": "Ammonia (ppm)",
+        "EColi": "E. coli (CFU)",
+        "TotalSuspendedSolids": "Total Suspended Solids (ppm)",
+        "Temperature": "Temperature (°C)"
+    }
+
     # Identify numeric columns (excluding columns you don't want to plot)
     numeric_cols = ['pH', 'Ammonia','EColi', 'Nitrate','DissolvedOxygen','TotalSuspendedSolids', 'Temperature']
 
