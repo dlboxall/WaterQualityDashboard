@@ -4,7 +4,6 @@
 # Create a dashboard to illustrate trends in various water quality features with time
 
 # In[1]:
-#pip install streamlit-folium;
 
 import streamlit as st
 import folium
@@ -85,16 +84,6 @@ def main():
     # ---------------------------------------------------------------------------------
     # 3. AUTO-SCALING SCATTER PLOT (SampleDate on x-axis; user picks y-axis)
     # ---------------------------------------------------------------------------------
-# Mapping of feature names to their labels with units
-    feature_units = {
-        "Nitrate": "Nitrate (ppm)",
-        "DissolvedOxygen": "Dissolved Oxygen (ppm)",
-        "Ammonia": "Ammonia (ppm)",
-        "EColi": "E. coli (CFU)",
-        "TotalSuspendedSolids": "Total Suspended Solids (ppm)",
-        "Temperature": "Temperature (°C)"
-    }
-
     # Mapping of feature names to their labels with units
     feature_units = {
         "Nitrate": "Nitrate (ppm)",
@@ -114,26 +103,6 @@ def main():
         numeric_cols
     )
     
-
-
-# Mapping of feature names to their labels with units
-feature_units = {
-    "Nitrate": "Nitrate (ppm)",
-    "DissolvedOxygen": "Dissolved Oxygen (ppm)",
-    "Ammonia": "Ammonia (ppm)",
-    "EColi": "E. coli (CFU)",
-    "TotalSuspendedSolids": "Total Suspended Solids (ppm)",
-    "Temperature": "Temperature (°C)"
-}
-
-# Identify numeric columns (excluding columns you don't want to plot)
-numeric_cols = ['pH', 'Ammonia', 'EColi', 'Nitrate', 'DissolvedOxygen', 'TotalSuspendedSolids', 'Temperature']
-
-# Let user pick which feature to plot on the y-axis
-selected_feature = st.selectbox(
-    "Select a feature for the y-axis:",
-    numeric_cols
-)
 
 # Get the corresponding title with units for the selected feature
 y_axis_title = feature_units.get(selected_feature, selected_feature)
@@ -174,7 +143,7 @@ filtered_df = new_df[new_df["Location"] == selected_location]
 
 if filtered_df.empty:
     st.warning(f"No data available for {selected_location}")
-    return
+return
 
     # -------------------------------------------------------------------
     # 2) Calculate mean and std dev of pH
@@ -223,9 +192,6 @@ if filtered_df.empty:
 if __name__ == "__main__":
     main()
 
-
-
-# In[ ]:
 
 
 
