@@ -148,7 +148,7 @@ def main():
     # ---------------------------------------------------------------------------------
     # 4. HISTOGRAM OF pH BY LOCATION
     # ---------------------------------------------------------------------------------
-    st.write("## pH Histograms by Location")
+st.write("## pH Histograms by Location")
 
     # 1) Add "All locations" as the first item in the selection box
     unique_locations = new_df["Location"].unique().tolist()
