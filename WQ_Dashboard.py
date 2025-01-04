@@ -108,7 +108,7 @@ def main():
     # ---------------------------------------------------------------------------------
     # 4. HISTOGRAM OF pH BY LOCATION
     # ---------------------------------------------------------------------------------
-    st.write("### pH Histograms by Location")
+    st.write("## pH Histograms by Location")
 
     locations = new_df["Location"].unique()
     selected_location = st.selectbox("Select a location for the pH histogram", locations)
