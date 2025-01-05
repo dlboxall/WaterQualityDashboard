@@ -104,7 +104,7 @@ def main():
 
     st.write("## Time-Series Scatter Plot")
     st.altair_chart(scatter_chart, use_container_width=True)
-'''
+
     # ---------------------------------------------------------------------------------
     # 4. HISTOGRAM OF pH BY LOCATION
     # ---------------------------------------------------------------------------------
@@ -143,124 +143,6 @@ def main():
     )
 
     final_hist_chart = alt.layer(hist_chart, annotation_text).configure_view(clip=False)
-    st.altair_chart(final_hist_chart, use_container_width=True)
-'''
-# ---------------------------------------------------------------------------------
-# 4. HISTOGRAM OF pH BY LOCATION
-# ---------------------------------------------------------------------------------
-    st.write("## pH Histograms by Location")
-
-# 1) Add "All locations" as the first item in the selection box
-    unique_locations = new_df["Location"].unique().tolist()
-    location_options = ["All locations"] + unique_locations
-    selected_location = st.selectbox("Select a location for the pH histogram", location_options)
-
-# 2) Define a color scale for your five known locations
-    color_scale = alt.Scale(
-        domain=[
-            "Big Sioux River @ Bahnson",
-            "Big Sioux River @ Falls Park",
-            "Big Sioux River @ I-90",
-            "Big Sioux River @ Timberline",
-            "Skunk Creek @ Marion Road"
-        ],
-        range=["blue", "orange", "green", "red", "purple"]
-    )
-
-# We'll use a constant opacity so that overlaid histograms and single histograms match
-    opacity_value = 0.5
-
-    if selected_location == "All locations":
-    # 3) Overlay histograms for all five locations
-    #    We layer one histogram per location
-        layered_charts = []
-
-        for loc in color_scale.domain:
-            loc_df = new_df[new_df["Location"] == loc]
-
-        # Build the histogram layer for this location
-            loc_hist = (
-                alt.Chart(loc_df)
-                .mark_bar(opacity=opacity_value)
-                .encode(
-                    x=alt.X(
-                        "pH:Q",
-                        bin=alt.Bin(maxbins=30),
-                    # Initial domain 3–12, but can pan/zoom to 0–14
-                        scale=alt.Scale(domain=[3, 12]),  
-                        title="pH",
-                    ),
-                    y=alt.Y(
-                        "count()",
-                    # Initial domain 0–600, but can pan/zoom further
-                        scale=alt.Scale(domain=[0, 600]),
-                        title="Count",
-                    ),
-                # Use a fixed color for each location
-                    color=alt.value(color_scale.range[color_scale.domain.index(loc)]),
-                    tooltip=["count()"]
-                )
-            )
-
-            layered_charts.append(loc_hist)
-
-    # Combine (layer) all location charts
-        hist_chart = alt.layer(*layered_charts).properties(
-            width="container",
-            height=300,
-            title="Distribution of pH for All Locations"
-        )
-
-    # If you want the user to be able to pan/zoom, add .interactive()
-        final_hist_chart = hist_chart.interactive()
-
-    else:
-    # 4) Show a single histogram for the selected location
-        filtered_df = new_df[new_df["Location"] == selected_location]
-        mean_pH = filtered_df["pH"].mean()
-        std_pH = filtered_df["pH"].std()
-
-    # Build the histogram for just one location
-        hist_chart = (
-            alt.Chart(filtered_df)
-            .mark_bar(opacity=opacity_value)
-            .encode(
-                x=alt.X(
-                    "pH:Q",
-                    bin=alt.Bin(maxbins=30),
-                    scale=alt.Scale(domain=[3, 12]),
-                    title="pH"
-                ),
-                y=alt.Y(
-                    "count()",
-                    scale=alt.Scale(domain=[0, 600]),
-                    title="Count"
-                ),
-                color=alt.Color("Location:N", scale=color_scale, legend=None),
-                tooltip=["count()"]
-            )
-            .properties(
-                width="container",
-                height=300,
-                title=f"Distribution of pH at {selected_location}"
-            )
-        )
-
-    # Add a mean ± std annotation
-        annotation_text = (
-            alt.Chart(pd.DataFrame([{}]))
-            .mark_text(align="left", baseline="top", color="red", fontSize=12)
-            .encode(
-                x=alt.value(20),
-                y=alt.value(20),
-                text=alt.value(f"Mean pH: {mean_pH:.2f} ± {std_pH:.2f}")
-            )
-        )
-
-    # Layer the histogram and the annotation
-        final_hist_chart = alt.layer(hist_chart, annotation_text).interactive()
-
-# 5) Render the final chart in the Streamlit app
     st.altair_chart(final_hist_chart, use_container_width=True)
 
 if __name__ == "__main__":
