@@ -104,7 +104,7 @@ def main():
 
     st.write("## Time-Series Scatter Plot")
     st.altair_chart(scatter_chart, use_container_width=True)
-'''
+
     # ---------------------------------------------------------------------------------
     # 4. HISTOGRAM OF pH BY LOCATION
     # ---------------------------------------------------------------------------------
@@ -262,6 +262,6 @@ else:
 
 # 5) Render the final chart in the Streamlit app
 st.altair_chart(final_hist_chart, use_container_width=True)
-
+'''
 if __name__ == "__main__":
     main()
