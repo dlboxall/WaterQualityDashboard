@@ -159,7 +159,7 @@ def main():
                 .encode(
                     x=alt.X(
                         "pH:Q",
-                        bin=alt.Bin(maxbins=30),
+                        bin=alt.Bin(maxbins=40),
                         # Initial domain 3–12, but can pan/zoom to 0–14
                         scale=alt.Scale(domain=[3, 12]),  
                         title="pH",
