@@ -142,7 +142,7 @@ def main():
     )
     
     # We'll use a constant opacity so that overlaid histograms and single histograms match
-    opacity_value = 0.5
+    opacity_value = 0.4
     
     if selected_location == "All locations":
         # 3) Overlay histograms for all five locations
@@ -201,7 +201,7 @@ def main():
             .encode(
                 x=alt.X(
                     "pH:Q",
-                    bin=alt.Bin(maxbins=30),
+                    bin=alt.Bin(maxbins=40),
                     scale=alt.Scale(domain=[3, 12]),
                     title="pH"
                 ),
